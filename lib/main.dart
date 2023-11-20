@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   var descrip=TextEditingController();
   var name=TextEditingController();
-  var upi=TextEditingController();
+  var upiID=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TextField(
-                controller: upi,
+                controller: upiID,
                 decoration: InputDecoration(
                     hintText: "Upi Id",
                     border: OutlineInputBorder(
@@ -135,9 +135,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void paymentStart()async {
-    try{
+    // try{
       Quantupi upi = Quantupi(
-        receiverUpiId: upiName,//my upi id
+        receiverUpiId: upiID.text,//my upi id
         receiverName: name.text,
         transactionRefId: 'kdskd',
         transactionNote: descrip.text,
@@ -156,17 +156,18 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         );
       });
-    } catch (e) {
-      showDialog(context: context, builder: (BuildContext context) {
-        return  AlertDialog(
-          title: Text("Payment Failed"),
-          actions: [
-            TextButton(onPressed: (){
-              Navigator.pop(context);
-            }, child: Text("ok"))
-          ],
-        );
-      });
-    }
+    // } catch (e) {
+    //   print(e);
+    //   showDialog(context: context, builder: (BuildContext context) {
+    //     return  AlertDialog(
+    //       title: Text("Payment Failed"),
+    //       actions: [
+    //         TextButton(onPressed: (){
+    //           Navigator.pop(context);
+    //         }, child: Text("ok"))
+    //       ],
+    //     );
+    //   });
+    // }
   }
 }
